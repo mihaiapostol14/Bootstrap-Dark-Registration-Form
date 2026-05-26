@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ==========================================================================
+   1. Design Tokens (Variables)
+   ========================================================================== */
+:root {
+  --bg-color: #0f172a;
+  --card-color: rgba(30, 41, 59, 0.85);
+  --input-color: #334155;
+  --input-focus-color: #3a4a61;
+  --border-color: #475569;
+  --text-color: #f8fafc;
+  --text-muted: #cbd5e1;
+  --placeholder-color: #94a3b8;
+  --primary-color: #3b82f6;
+  --primary-hover: #2563eb;
+  --shadow-color: rgba(59, 130, 246, 0.25);
+  --danger-color: #f87171;
+  
+  /* Adding standard transition tokens for consistency */
+  --transition-fast: all 0.2s ease;
+  --transition-normal: all 0.3s ease;
+}
+
+/* ==========================================================================
+   2. Reset & Global Styles
+   ========================================================================== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-color);
+  background: 
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.2), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.2), transparent 30%), 
+    var(--bg-color);
+  
+  /* Note: Removed overflow: hidden to ensure accessible scrolling on small screens/landscape mode */
+}
+
+/* ==========================================================================
+   3. Layout & Components
+   ========================================================================== */
+
+/* Card Container */
+.container {
+  width: 100%;
+  max-width: 450px;
+  background: var(--card-color);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  padding: 40px 35px;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4), 
+    0 0 30px rgba(59, 130, 246, 0.08);
+}
+
+/* Typography */
+.text-center {
+  color: var(--text-color);
+  font-size: 2.125rem; /* 34px converted to relative rem */
+  font-weight: 700;
+  margin-bottom: 35px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* Form Layout */
+.form-group {
+  margin-bottom: 22px;
+}
+
+.form-label {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.875rem; /* 14px */
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+/* Form Controls */
+.form-control {
+  width: 100%;
+  height: 58px;
+  padding: 0 18px;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  background: var(--input-color);
+  color: var(--text-color);
+  font-size: 0.9375rem; /* 15px */
+  transition: var(--transition-normal);
+}
+
+.form-control::placeholder {
+  color: var(--placeholder-color);
+}
+
+.form-control:focus {
+  outline: none; /* Accessible outline alternative provided by box-shadow below */
+  border-color: var(--primary-color);
+  background: var(--input-focus-color);
+  box-shadow: 0 0 0 4px var(--shadow-color);
+  /* Removed transform: translateY(-2px) to prevent layout jumping while typing */
+}
+
+/* Buttons */
+.btn-primary {
+  width: 100%;
+  height: 58px;
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--primary-color), #06b6d4);
+  color: #ffffff;
+  font-size: 1.125rem; /* 18px */
+  font-weight: 600;
+  margin-top: 10px;
+  cursor: pointer; /* Ensures interactive cursor on desktop */
+  transition: var(--transition-normal);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--primary-hover), #0891b2);
+  box-shadow: 0 12px 25px rgba(59, 130, 246, 0.35);
+  transform: translateY(-2px); /* Slightly softened shift */
+}
+
+.btn-primary:active {
+  transform: translateY(0); /* Adds a satisfying "click" feedback */
+}
+
+/* Validation */
+.invalid-feedback {
+  color: var(--danger-color);
+  font-size: 0.8125rem; /* 13px */
+  margin-top: 6px;
+}
+
+/* Bootstrap Validation Override Cleanups */
+.was-validated .form-control:valid,
+.form-control.is-valid,
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+/* Respect user preferences for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, .form-control, .btn-primary {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* ==========================================================================
+   4. Media Queries
+   ========================================================================== */
+@media (max-width: 500px) {
+  .container {
+    padding: 30px 22px;
+    border-radius: 22px;
+  }
+
+  .text-center {
+    font-size: 1.75rem; /* 28px */
+  }
+
+  .form-control,
+  .btn-primary {
+    height: 54px;
+  }
+}
